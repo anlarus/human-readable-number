@@ -37,14 +37,12 @@ module.exports = function toReadable(number) {
     ];
 
     let hundred = "hundred";
-    let userOutput, firstWord, secondWord, thirdWord;
+    let result, firstWord, secondWord, thirdWord;
 
     if (!isNaN(+number) && +number >= 0 && +number <= 999) {
         if (number <= 20) {
             group1.forEach((item) => {
-                number === group1.indexOf(item)
-                    ? (userOutput = item)
-                    : userOutput;
+                number === group1.indexOf(item) ? (result = item) : result;
             });
         } else if (+number > 20 && +number < 100) {
             if (+number % 10 === 0) {
@@ -53,7 +51,7 @@ module.exports = function toReadable(number) {
                         ? (firstWord = item)
                         : firstWord;
                 });
-                userOutput = `${firstWord}`;
+                result = `${firstWord}`;
             } else {
                 group2.forEach((item) => {
                     Math.floor(+number / 10) === group2.indexOf(item)
@@ -65,7 +63,7 @@ module.exports = function toReadable(number) {
                         ? (secondWord = item)
                         : secondWord;
                 });
-                userOutput = `${firstWord} ${secondWord}`;
+                result = `${firstWord} ${secondWord}`;
             }
         } else if (+number % 10 === 0) {
             if (+number % 100 === 0) {
@@ -74,7 +72,7 @@ module.exports = function toReadable(number) {
                         ? (firstWord = item)
                         : firstWord;
                 });
-                userOutput = `${firstWord} ${hundred}`;
+                result = `${firstWord} ${hundred}`;
             } else {
                 group1.forEach((item) => {
                     Math.floor(+number / 100) === group1.indexOf(item)
@@ -86,7 +84,7 @@ module.exports = function toReadable(number) {
                         ? (secondWord = item)
                         : secondWord;
                 });
-                userOutput = `${firstWord} ${hundred} ${secondWord}`;
+                result = `${firstWord} ${hundred} ${secondWord}`;
             }
         } else {
             if (Math.floor((+number / 10) % 10) === 0) {
@@ -101,7 +99,7 @@ module.exports = function toReadable(number) {
                         ? (thirdWord = item)
                         : thirdWord;
                 });
-                userOutput = `${firstWord} ${hundred} ${thirdWord}`;
+                result = `${firstWord} ${hundred} ${thirdWord}`;
             } else {
                 if (+number % 100 < 20) {
                     group1.forEach((item) => {
@@ -114,7 +112,7 @@ module.exports = function toReadable(number) {
                             ? (secondWord = item)
                             : secondWord;
                     });
-                    userOutput = `${firstWord} ${hundred} ${secondWord}`;
+                    result = `${firstWord} ${hundred} ${secondWord}`;
                 } else {
                     group1.forEach((item) => {
                         Math.floor(+number / 100) === group1.indexOf(item)
@@ -134,10 +132,10 @@ module.exports = function toReadable(number) {
                             : thirdWord;
                     });
 
-                    userOutput = `${firstWord} ${hundred} ${secondWord} ${thirdWord}`;
+                    result = `${firstWord} ${hundred} ${secondWord} ${thirdWord}`;
                 }
             }
         }
     }
-    return userOutput;
+    return result;
 };
